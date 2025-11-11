@@ -1,0 +1,55 @@
+{{define "header"}}
+<div class="relative bg-gradient-to-r from-cyan-700 via-cyan-800 to-cyan-900 flex items-center justify-between px-4 h-16 border-cyan-700 border-b-gray-500 border overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute top-0 right-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative flex items-center justify-between w-full">
+    <a href="/">
+        <svg viewBox="0 0 800 200" class="h-12 md:h-16 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="90" y1="80" x2="155" y2="80" stroke="white" stroke-width="6"/>
+            <line x1="80" y1="95" x2="151" y2="95" stroke="white" stroke-width="6"/>
+            <line x1="100" y1="110" x2="148" y2="110" stroke="white" stroke-width="6"/>
+            <text x="180" y="140" font-family="Impact, sans-serif" font-size="90" font-weight="bold"
+                  fill="white" stroke="white" transform="skewX(-15)">
+                learn-go
+            </text>
+        </svg>
+    </a>
+
+    <div class="flex gap-2 md:gap-4 items-center">
+        {{if .User}}
+            <!-- Authenticated user -->
+            <div class="flex items-center gap-3">
+                <!-- Score -->
+                <div class="flex items-center gap-1 bg-white/20 px-3 py-1.5 rounded-lg">
+                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    <span class="text-white font-semibold">{{.User.Score}}</span>
+                </div>
+
+                <!-- Avatar & Name -->
+                <a href="/profile" class="flex items-center gap-2 hover:bg-white/10 px-3 py-1.5 rounded-lg transition">
+                    {{if .User.AvatarURL}}
+                        <img src="{{.User.AvatarURL}}" alt="{{.User.Name}}" class="w-8 h-8 rounded-full border-2 border-white">
+                    {{else}}
+                        <!-- Default avatar with initials -->
+                        <div class="w-8 h-8 rounded-full border-2 border-white bg-cyan-600 flex items-center justify-center">
+                            <span class="text-white font-semibold text-sm">{{firstRune .User.Name}}</span>
+                        </div>
+                    {{end}}
+                    <span class="text-white font-semibold hidden md:inline">{{.User.Name}}</span>
+                </a>
+            </div>
+        {{else}}
+            <!-- Anonymous user -->
+            <a href="/login" class="px-3 md:px-6 py-2 bg-white text-cyan-700 rounded-lg text-sm md:text-base font-semibold hover:bg-gray-100">Sign In</a>
+            <a href="/register" class="px-3 md:px-6 py-2 border-2 border-white text-white rounded-lg text-sm md:text-base font-semibold hover:bg-white hover:text-cyan-700">Sign Up</a>
+        {{end}}
+    </div>
+    </div>
+</div>
+{{end}}

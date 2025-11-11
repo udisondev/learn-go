@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение email</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background-color: #f8f9fa; border-radius: 10px; padding: 30px; margin-top: 20px;">
+        <h1 style="color: #007bff; margin-top: 0;">Добро пожаловать в Learn Go!</h1>
+
+        <p>Привет, <strong>{{.user_name}}</strong>!</p>
+
+        <p>Спасибо за регистрацию на нашей платформе для изучения Go. Пожалуйста, подтвердите ваш email адрес, нажав на кнопку ниже:</p>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="http://localhost:8080/verify-email?token={{.token}}"
+               style="background-color: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+                Подтвердить email
+            </a>
+        </div>
+
+        <p>Или скопируйте и вставьте эту ссылку в браузер:</p>
+        <p style="background-color: #e9ecef; padding: 10px; border-radius: 5px; word-break: break-all; font-size: 14px;">
+            http://localhost:8080/verify-email?token={{.token}}
+        </p>
+
+        <p style="color: #6c757d; font-size: 14px; margin-top: 30px;">
+            Эта ссылка действительна в течение 48 часов.
+        </p>
+
+        <p style="color: #6c757d; font-size: 14px;">
+            Если вы не регистрировались на нашей платформе, просто проигнорируйте это письмо.
+        </p>
+    </div>
+
+    <p style="text-align: center; color: #6c757d; font-size: 12px; margin-top: 20px;">
+        © 2025 Learn Go. Все права защищены.
+    </p>
+</body>
+</html>

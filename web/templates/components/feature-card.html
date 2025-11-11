@@ -1,0 +1,20 @@
+{{define "feature-card"}}
+<div class="group [perspective:1000px] h-80">
+    <div class="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+        <!-- Front of card -->
+        <div class="absolute w-full h-full [backface-visibility:hidden] bg-gray-100 border border-gray-300 rounded-lg p-8 flex flex-col justify-center items-center">
+            <div class="{{.sizeClass}}">
+                <img class="w-full h-full object-contain" src="{{.src}}" alt="{{.alt}}"/>
+            </div>
+            <h3 class="text-cyan-700 text-2xl font-bold mb-4 text-center">{{.title}}</h3>
+            <p class="text-cyan-700 text-center">{{.short}}</p>
+        </div>
+
+        <!-- Back of card -->
+        <div class="absolute w-full h-full [backface-visibility:hidden] bg-cyan-700 border border-cyan-800 rounded-lg p-6 flex flex-col justify-center items-center [transform:rotateY(180deg)] overflow-y-auto">
+            <h3 class="text-white text-xl font-bold mb-3 text-center">{{.title}}</h3>
+            <p class="text-white text-center text-sm leading-relaxed">{{.description}}</p>
+        </div>
+    </div>
+</div>
+{{end}}

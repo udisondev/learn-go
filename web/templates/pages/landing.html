@@ -1,0 +1,165 @@
+{{define "content"}}
+<!-- Preview Section -->
+<div class="relative bg-gradient-to-br from-cyan-700 via-cyan-800 to-cyan-900 w-full overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto">
+        <div class="h-auto pt-16 flex">
+            <div class="mx-auto animate-bounce">
+                <img src="/static/images/gophers/dance.gif" alt="Dancing Gopher" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+        </div>
+        <div class="flex flex-col gap-6 text-center justify-center pb-10 px-4">
+            <h1 class="text-white text-4xl md:text-6xl lg:text-7xl font-sans">Освойте Golang с нуля</h1>
+            <p class="text-white text-lg md:text-xl font-sans">
+                Практический курс для тех, кто хочет стать профессиональным Go-разработчиком
+            </p>
+            <!-- Video Section -->
+            <div class="flex justify-center">
+                <div class="bg-white rounded-2xl shadow-lg p-2 w-full max-w-4xl">
+                    <div class="relative w-full" style="padding-bottom: 56.25%;">
+                        <iframe
+                            class="absolute top-0 left-0 w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/AHbq2STsNj8"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Section -->
+<main class="bg-white m-4 rounded-lg">
+    <div class="text-center px-4 py-6">
+        <h1 class="text-cyan-700 text-3xl md:text-5xl font-bold">Что вы получите на курсе</h1>
+    </div>
+    <div class="m-4 md:m-6 flex justify-center">
+        <div class="w-full max-w-[1200px]">
+            <!-- Feature Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {{template "feature-card" dict "src" "/static/images/gophers/grpc-web.svg" "alt" "grpc-web" "sizeClass" "w-24 h-24" "title" "Практический подход" "short" "Мы подготовили для вас множество практических задач" "description" "По мере прохождения материала мы будем давать тебе задачи, которые помогут тебе закрепить пройденный материал и увидеть как твои знания работают в реальной программе"}}
+
+                {{template "feature-card" dict "src" "/static/images/gophers/hiking.svg" "alt" "hiking" "sizeClass" "w-32 h-32" "title" "От основ к продвинутому" "short" "Структурированная программа от базовых концепций до сложных паттернов" "description" "Начнём с синтаксиса Go и базовых концепций, постепенно перейдём к горутинам, каналам, интерфейсам и продвинутым паттернам проектирования. Программа разработана так, чтобы каждая тема логично вытекала из предыдущей. Подходит как для новичков, так и для тех, кто хочет углубить знания."}}
+
+                {{template "feature-card" dict "src" "/static/images/gophers/rocket.svg" "alt" "rocket" "sizeClass" "w-32 h-32" "title" "Современные технологии" "short" "gRPC, Docker, микросервисы и лучшие практики индустрии" "description" "Изучите актуальный стек технологий: Docker для контейнеризации, gRPC для эффективного взаимодействия сервисов, PostgreSQL и Redis, работу с Kubernetes. Освоите микросервисную архитектуру, CI/CD и best practices от ведущих компаний. Эти навыки востребованы на рынке прямо сейчас."}}
+
+                {{template "feature-card" dict "src" "/static/images/gophers/scientist.svg" "alt" "scientist" "sizeClass" "w-24 h-24" "title" "Поддержка" "short" "Ответы на вопросы и помощь в решении сложных задач" "description" "Если вдруг у вас возникнут трудности в решении задач, вы всегда сможете посмотреть подсказки или найти готовое решение."}}
+
+                {{template "feature-card" dict "src" "/static/images/gophers/superhero.svg" "alt" "superhero" "sizeClass" "w-28 h-28" "title" "Портфолио проектов" "short" "Создайте впечатляющее портфолио для резюме" "description" "В процессе обучения вы создадите 5+ полноценных проектов: микросервис с gRPC, REST API с авторизацией, CLI-утилиту, веб-приложение с базой данных. Все проекты можно разместить на GitHub и показать на собеседовании. Это не учебные примеры, а реальные приложения с правильной архитектурой."}}
+
+                {{template "feature-card" dict "src" "/static/images/gophers/gotham.svg" "alt" "gotham" "sizeClass" "w-36 h-36" "title" "Помощь в трудоустройстве" "short" "Мы поможем вам получить работу мечты в IT" "description" "Пройдете mock-собеседования, на которых сможете проработать свои сильные и слабые стороны. Наши HR-специалисты помогут вам с подготовкой резюме, дадут советы по поиску вакансий и подскажут, как успешно пройти собеседование и получить работу мечты в IT-компании."}}
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- CTA Section -->
+<div class="relative bg-gradient-to-br from-cyan-700 via-cyan-800 to-cyan-900 w-full py-24 md:py-32 overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto px-6 text-center">
+        {{if .User}}
+            <!-- Authenticated User CTA -->
+            <div class="mb-8">
+                <span class="inline-block px-6 py-2 bg-white/20 text-white text-sm font-semibold rounded-full backdrop-blur-sm mb-6">
+                    🎓 ПРОДОЛЖАЙТЕ СВОЁ ПУТЕШЕСТВИЕ
+                </span>
+            </div>
+
+            <h2 class="text-white text-5xl md:text-6xl font-bold mb-8 leading-tight">
+                Готовы к новым<br>открытиям?
+            </h2>
+
+            <p class="text-white/90 text-xl md:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto">
+                Ваше космическое путешествие продолжается!<br class="hidden md:block">
+                Переходите к следующему уроку и покоряйте новые высоты в программировании.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-10">
+                <a href="/course" class="group relative inline-flex items-center justify-center px-16 py-5 text-xl font-bold text-cyan-700 bg-white rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl min-w-[280px]">
+                    <span class="relative z-10">Перейти к обучению</span>
+                    <span class="absolute inset-0 bg-gradient-to-r from-cyan-50 to-white opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-8 text-white/80 text-sm">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    <span>Ваши очки: {{.User.Score}}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                    </svg>
+                    <span>Присоединяйтесь к сообществу</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Учитесь в своём темпе</span>
+                </div>
+            </div>
+        {{else}}
+            <!-- Anonymous User CTA -->
+            <div class="mb-8">
+                <span class="inline-block px-6 py-2 bg-white/20 text-white text-sm font-semibold rounded-full backdrop-blur-sm mb-6">
+                    🚀 ПРИСОЕДИНЯЙТЕСЬ К КОСМИЧЕСКОЙ МИССИИ
+                </span>
+            </div>
+
+            <h2 class="text-white text-5xl md:text-6xl font-bold mb-8 leading-tight">
+                Ваш корабль уже ждёт<br>на станции!
+            </h2>
+
+            <p class="text-white/90 text-xl md:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto">
+                Присоединяйтесь к тысячам разработчиков, которые уже осваивают Go.<br class="hidden md:block">
+                Регистрация займёт 30 секунд, а первые уроки доступны бесплатно.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-10">
+                <a href="/register" class="group relative inline-flex items-center justify-center px-16 py-5 text-xl font-bold text-cyan-700 bg-white rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl min-w-[280px]">
+                    <span class="relative z-10">Начать обучение</span>
+                    <span class="absolute inset-0 bg-gradient-to-r from-cyan-50 to-white opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-8 text-white/80 text-sm">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Без кредитной карты</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Первые уроки бесплатно</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Доступ сразу после регистрации</span>
+                </div>
+            </div>
+        {{end}}
+    </div>
+</div>
+{{end}}
