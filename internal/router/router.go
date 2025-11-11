@@ -31,10 +31,10 @@ func New(h *handler.Handler, sessionService *session.Service) *chi.Mux {
 	r.Get("/", h.HandleLanding)
 	r.Get("/register", h.HandleRegisterPage)
 	r.Post("/register", h.HandleRegisterSubmit)
+	r.Get("/login", h.GetLogin)
+	r.Post("/login", h.PostLogin)
 	r.Get("/verify-email", h.HandleVerifyEmail)
 	r.Post("/logout", h.HandleLogout)
-	// TODO: r.Get("/login", h.HandleLogin)
-	// TODO: r.Post("/login", h.HandleLoginSubmit)
 
 	// Protected routes (require authentication)
 	// TODO: r.Group(func(r chi.Router) {

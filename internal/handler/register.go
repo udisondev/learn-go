@@ -12,12 +12,13 @@ import (
 
 // HandleRegisterPage renders the registration page
 func (h *Handler) HandleRegisterPage(w http.ResponseWriter, r *http.Request) {
-	// Get authenticated user from context
-	u, _ := user.FromCtx(r.Context())
-
-	data := &templates.RegisterData{
-		User: u,
+	// Если пользователь уже авторизован - редирект на главную
+	if _, ok := user.FromCtx(r.Context()); ok {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
 	}
+
+	data := &templates.RegisterData{}
 
 	if err := h.templates.RenderRegister(w, data); err != nil {
 		slog.Error("Failed to render register page", "error", err)
@@ -27,6 +28,12 @@ func (h *Handler) HandleRegisterPage(w http.ResponseWriter, r *http.Request) {
 
 // HandleRegisterSubmit processes the registration form
 func (h *Handler) HandleRegisterSubmit(w http.ResponseWriter, r *http.Request) {
+	// Если пользователь уже авторизован - редирект на главную
+	if _, ok := user.FromCtx(r.Context()); ok {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	// Parse form data
 	if err := r.ParseForm(); err != nil {
 		slog.Error("Failed to parse form", "error", err)
@@ -49,12 +56,8 @@ func (h *Handler) HandleRegisterSubmit(w http.ResponseWriter, r *http.Request) {
 		// Проверяем тип ошибки - validation errors или системная ошибка
 		var validationErrs user.ValidationErrors
 		if errors.As(err, &validationErrs) {
-			// Get authenticated user from context
-			u, _ := user.FromCtx(r.Context())
-
 			// Validation errors - отображаем в форме
 			data := &templates.RegisterData{
-				User:   u,
 				Errors: make(map[string]string),
 				Name:   input.Name,
 				Email:  input.Email,

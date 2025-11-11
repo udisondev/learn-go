@@ -141,6 +141,11 @@ func (s *Service) RegisterUser(ctx context.Context, input RegisterInput) (*Regis
 	return &result, nil
 }
 
+// GetUserByEmail возвращает пользователя по email
+func (s *Service) GetUserByEmail(ctx context.Context, email string) (*User, error) {
+	return s.repo.GetUserByEmail(ctx, email)
+}
+
 // VerifyEmail верифицирует email пользователя по токену
 // Вызывается когда пользователь переходит по ссылке из письма
 //

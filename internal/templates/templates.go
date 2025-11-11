@@ -40,10 +40,19 @@ func Init() (*Templates, error) {
 
 	// Parse register page templates
 	registerTmpl, err := template.New("").Funcs(funcMap).ParseFiles(
-		"web/templates/layouts/base.html",
-		"web/templates/components/header.html",
+		"web/templates/layouts/auth.html",
 		"web/templates/components/register-form.html",
 		"web/templates/pages/register.html",
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	// Parse login page templates
+	loginTmpl, err := template.New("").Funcs(funcMap).ParseFiles(
+		"web/templates/layouts/auth.html",
+		"web/templates/components/login-form.html",
+		"web/templates/pages/login.html",
 	)
 	if err != nil {
 		return nil, err
@@ -52,6 +61,7 @@ func Init() (*Templates, error) {
 	return &Templates{
 		landingTmpl:  landingTmpl,
 		registerTmpl: registerTmpl,
+		loginTmpl:    loginTmpl,
 	}, nil
 }
 
@@ -68,10 +78,49 @@ func (t *Templates) RenderLanding(w http.ResponseWriter, data *LandingData) erro
 	return nil
 }
 
-// RenderLogin renders the login page
-func (t *Templates) RenderLogin(w http.ResponseWriter, data *LoginData) error {
-	// TODO: execute login template
-	panic("not implemented")
+// Render renders a full page
+func (t *Templates) Render(w http.ResponseWriter, page string, data interface{}) error {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	var tmpl *template.Template
+	switch page {
+	case "landing.html":
+		tmpl = t.landingTmpl
+	case "register.html":
+		tmpl = t.registerTmpl
+	case "login.html":
+		tmpl = t.loginTmpl
+	default:
+		return nil
+	}
+
+	// Use auth layout for login/register, base layout for others
+	layoutName := "base.html"
+	if page == "login.html" || page == "register.html" {
+		layoutName = "auth.html"
+	}
+	return tmpl.ExecuteTemplate(w, layoutName, data)
+}
+
+// RenderComponent renders a component (for HTMX partial updates)
+func (t *Templates) RenderComponent(w http.ResponseWriter, component string, data interface{}) error {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	var tmpl *template.Template
+	var componentName string
+
+	switch component {
+	case "register-form.html":
+		tmpl = t.registerTmpl
+		componentName = "register-form"
+	case "login-form.html":
+		tmpl = t.loginTmpl
+		componentName = "login-form"
+	default:
+		return nil
+	}
+
+	return tmpl.ExecuteTemplate(w, componentName, data)
 }
 
 // RenderRegister renders the register page
@@ -79,8 +128,8 @@ func (t *Templates) RenderRegister(w http.ResponseWriter, data *RegisterData) er
 	// Set content type
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-	// Execute base layout template with register content
-	if err := t.registerTmpl.ExecuteTemplate(w, "base.html", data); err != nil {
+	// Execute auth layout template with register content
+	if err := t.registerTmpl.ExecuteTemplate(w, "auth.html", data); err != nil {
 		return err
 	}
 
@@ -107,12 +156,11 @@ type LandingData struct {
 }
 
 type LoginData struct {
-	User  *user.User // Authenticated user (nil if anonymous)
-	Error string
+	Email  string            // Preserved email on validation error
+	Errors map[string]string // Field-specific errors
 }
 
 type RegisterData struct {
-	User   *user.User        // Authenticated user (nil if anonymous)
 	Errors map[string]string
 	Name   string
 	Email  string
